@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+/** The class EntryDatabase that extends the SQL helper to make SQL queries. */
 public class EntryDatabase extends SQLiteOpenHelper {
 
     public static final String DBNAME = "entrytables";
@@ -17,6 +18,7 @@ public class EntryDatabase extends SQLiteOpenHelper {
 
     private static EntryDatabase instance;
 
+    /** The constructor for the EntryDatabase. */
     private EntryDatabase(Context context) {
         super(context, DBNAME, null, 1);
     }
@@ -33,15 +35,9 @@ public class EntryDatabase extends SQLiteOpenHelper {
                 MOOD + " INTEGER DEFAULT 0 " +
                 ");";
         db.execSQL(s);
-
-//        Entry e1 = new Entry(1, "hallo", "hoe gaat het", "10 maart", 1);
-//        Entry e2 = new Entry(2, "hallo", "hoe gaat het", "10 maart", 1);
-//        Entry e3 = new Entry(3, "hallo", "hoe gaat het", "10 maart", 1);
-//        db.insert(e1);
-//        instance.insert(e2);
-//        instance.insert(e3);
     }
 
+    /** Returns the value of instance if available. Otherwise, it will call the constructor. */
     public static EntryDatabase getInstance(Context context){
         if (instance != null){
             return instance;
@@ -52,6 +48,7 @@ public class EntryDatabase extends SQLiteOpenHelper {
         }
     }
 
+    /** SQL query to select all entries. */
     public Cursor selectAll() {
         SQLiteDatabase db = getReadableDatabase();
         String Query ="SELECT * FROM entrytables";
@@ -59,13 +56,15 @@ public class EntryDatabase extends SQLiteOpenHelper {
         return cursor;
     }
 
-
+    /** Drops the entries table (if it exists) and recreates it by calling onCreate(). */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + DBNAME);
         onCreate(db);
     }
 
+    /** Opens a connection to the database and creates a new ContentValues object.
+     * It will add the values for the title, content and mood and call the insert method. */
     public void insert(Entry e){
         SQLiteDatabase db = getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -76,6 +75,7 @@ public class EntryDatabase extends SQLiteOpenHelper {
 
     }
 
+    /** In order to delete an entry. */
     public void delete(long id){
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("DELETE FROM "+DBNAME+" WHERE "+ID+"="+id);

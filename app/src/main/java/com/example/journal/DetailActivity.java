@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 public class DetailActivity extends AppCompatActivity {
 
+    /** In the onCreate method, the details of the journal fill be filled in. */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,15 +27,19 @@ public class DetailActivity extends AppCompatActivity {
 
         switch (e.getMood()){
             case 0:
+                e.setMood(0);
                 mood.setText("Very sad");
                 break;
             case 1:
+                e.setMood(1);
                 mood.setText("Neutral");
                 break;
             case 2:
+                e.setMood(2);
                 mood.setText("Happy");
                 break;
             case 3:
+                e.setMood(3);
                 mood.setText("Very happy");
                 break;
         }

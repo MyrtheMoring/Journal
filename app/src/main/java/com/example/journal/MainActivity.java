@@ -5,18 +5,13 @@ import android.database.Cursor;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity {
 
-//    private EntryDatabase db = EntryDatabase.getInstance(this);
-//    EntryAdapter adapter;
-
-    private static final String TAG = "CURSOR_CHECK";
-
+    /** The onCreate the setAdapter and setOnClickListeners functions are called. */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,14 +29,16 @@ public class MainActivity extends AppCompatActivity {
         setOnClickListeners();
     }
 
+    /** This function will update the adapter when adding a new entry. */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         setAdapter();
     }
 
+    /** The EntryClickListener class sets the onclicklistener for the ListView.
+     * When clicking an entry, the DetailActivity class will be started with the clicked entry. */
     private class EntryClickListener implements ListView.OnItemClickListener {
-
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             Cursor cursor = (Cursor) parent.getItemAtPosition(position);
@@ -57,6 +54,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /** The EntryLongClickListener class implements the OnItemLongClickListener for the ListView.
+     * When clicking an entry for a longer time, it will be removed from both the database and
+     * adapter. */
     private class EntryLongClickListener implements ListView.OnItemLongClickListener {
         @Override
         public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -68,11 +68,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /** Creates a new entry and directs to the new activity. */
     public void newEntry(){
         Intent intent = new Intent(this, AddEntry.class);
         startActivityForResult(intent, 1);
     }
 
+    /** The setAdapter functions uses the EntryDatabase to get all records from the database.
+     * It makes a new EntryAdapter and links the ListView to this new adapter*/
     public void setAdapter () {
         EntryDatabase db = EntryDatabase.getInstance(getApplicationContext());
         ListView list = findViewById(R.id.entries);

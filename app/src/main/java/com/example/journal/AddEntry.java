@@ -1,16 +1,12 @@
 package com.example.journal;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
+/** The class AddEntry. */
 public class AddEntry extends AppCompatActivity {
     EditText title, content;
     private int mood;
@@ -55,6 +51,8 @@ public class AddEntry extends AppCompatActivity {
         }
         moodimage.setBackgroundResource(R.drawable.border);
     }
+
+    /** The button onClick function to submit a new entry. */
     public void submitEntry(View v){
         title = findViewById(R.id.textitle);
         content = findViewById(R.id.textcontent);
