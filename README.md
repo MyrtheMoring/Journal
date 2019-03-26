@@ -13,7 +13,7 @@ The *Journal* is an app that allows you to create a journal and fill it in with 
 ![alt text](https://github.com/MyrtheMoring/Journal/blob/master/overview.png "Overview")
 
 2. Create a journal entry:
-![alt text](hhttps://github.com/MyrtheMoring/Journal/blob/master/start.png "Create entry")
+![alt text](https://github.com/MyrtheMoring/Journal/blob/master/start.png "Create entry")
 
 3. Read individual journal entry:
 ![alt text](https://github.com/MyrtheMoring/Journal/blob/master/journal.png "Read entry")
